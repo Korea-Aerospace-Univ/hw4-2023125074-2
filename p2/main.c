@@ -1,29 +1,36 @@
 #include <stdio.h>
 
-int main(void) {
-    int n = 0, cnt_lower = 0, cnt_digit = 0, max_lower = 0, max_digit = 0;
-    
-    scanf("%d", &n);
+int main() {
+    int N;
+    scanf("%d", &N);
 
-    for(int i=0;i<n;i++){
-        char c;
-        scanf("%c", &c);
+    int lower_cnt = 0, digit_cnt = 0;
+    int max_lower = 0, max_digit = 0;
 
-        if('a' <= c && c <= 'z'){// 소문자일 때
-            cnt_lower++;
-            cnt_digit = 0;
+    char ch;
+
+    for (int i = 0; i < N; i++) {
+        scanf(" %c", &ch);
+
+        // 소문자
+        if (ch >= 'a' && ch <= 'z') {
+            lower_cnt++;
+            digit_cnt = 0;
         }
-        else{// 숫자일 때
-            cnt_lower = 0;
-            cnt_digit++;
+        // 숫자
+        else {
+            digit_cnt++;
+            lower_cnt = 0;
         }
 
-        if(max_lower < cnt_lower)// 비교해서 문자 최댓값
-            max_lower = cnt_lower;
-        if(max_digit < cnt_digit)// 비교해서 숫자 최댓값
-            max_digit = cnt_digit;
+        if (lower_cnt > max_lower)
+            max_lower = lower_cnt;
+        if (digit_cnt > max_digit)
+            max_digit = digit_cnt;
     }
 
-    printf("%d\n%d", max_lower, max_digit);
+    printf("%d\n", max_lower);
+    printf("%d\n", max_digit);
+
     return 0;
 }
